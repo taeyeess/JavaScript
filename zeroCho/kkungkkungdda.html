@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿵쿵따만들기</title>
+</head>
+<body>
+    <h2>쿵쿵따 만들기</h2>
+    <div>
+        <span id="order">1</span>
+        번째 참가자
+    </div>
+    <div>
+        제시어:
+        <span id="word"></span>
+    </div>
+    <input type="text">
+    <button>입력</button>
+    <script>
+        const number = Number(prompt('몇 명이 참가하나요?')); // 프롬포트 창에 입력되는 내용을 숫자로 받겠다. Number, parseInt
+        if(number){
+            
+            const $input = document.querySelector('input');
+            const $button = document.querySelector('button');
+            const $order = document.querySelector('#order');
+            const $word = document.querySelector('#word');
+
+            let word = '';
+            let newWord;
+            
+            const onInput = function(event){
+                newWord = event.target.value;
+            };
+            const onClickButton = function(){
+                if(!word || (word[word.length-1] === newWord[0] && newWord.length === 3)){
+                    word = newWord;
+                    console.log($word);
+                    $word.textContent = word;
+                    console.log($word);
+                    const order = Number($order.textContent);
+                    if(order + 1 > number){
+                        $order.textContent = 1;
+                    }else{
+                        $order.textContent = order + 1;
+                    }
+                }else{
+                    alert('올바르지 않은 단어입니다.');                
+                }
+                $input.value = '';
+                $input.focus();
+            };            
+
+            $button.addEventListener('click', onClickButton);
+            $button.addEventListener('input', onInput);
+        }
+        
+    </script>
+</body>
+</html>

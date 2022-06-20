@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>끝말잇기</title>
+</head>
+
+<body>
+  <div><span id="order">1</span>번째 참가자</div>
+  <div>제시어: <span id="word"></span></div>
+  <input type="text">
+  <button>입력</button>
+  <script>
+    // const number = parseInt(prompt('몇명이 참가하나요?'), 10);
+    // console.log('몇명'+ number);
+    // alert(number);
+    // const yesOrNo = confirm(number + '명이 맞나요?'); 
+    // console.log(yesOrNo); // confirm은 true, false반환
+
+    // document.querySelector('#order');
+    // document.querySelector('#word');
+    // document.querySelector('input').addEventListener('input', function(){
+
+    // });
+    // document.querySelector('button').addEventListener('click', function(){
+
+    // });
+    const number = Number(prompt('몇명이 참가하나요?'));
+    const $input = document.querySelector('input');
+    const $button = document.querySelector('button');
+    const $word = document.querySelector('#word');
+    const $order = document.querySelector('#order');
+
+    let word = ''; // 첫번째 제시어
+    let newWord; // 새로 입력한 단어
+
+    const onInput = (event) => {
+      newWord = event.target.value;
+    }; // function(event){};
+    const onClickButton = /* function(){};*/() => {
+      if (!word) { // 제시어가 비어있는가?
+        //비어있을때 실행
+        word = newWord; // 첫번째 입력한 제시어가 새로 입력한 단어가 된다.
+        $word.textContent = word; // html상에 #word부분을 바꿔준다
+        console.log($word);
+        $input.value = ''; // 위에 제시어가 입력이 되었을 때 인풋 안에 내용물을 지워준다. 
+        $input.focus(); // 커서를 깜빡깜빡하게 하는거
+        const order = parseInt($order.textContent); // 현재 순서
+        if (order + 1 > number) {
+          $order.textContent = 1;
+        } else {
+          $order.textContent = order + 1;
+        }
+      } else {
+        //비어있지 않을 때 실행
+        if (word[word.length - 1] === newWord[0]) { // 첫번째 제시어word의 마지막글자와 새로 입력한 단어newWord의 첫번째 글자가 일치하는가
+          word = newWord; // 입력한 단어가 제시어가 된다.
+          $word.textContent = word; // html상에 #word부분을 바꿔준다
+          $input.value = ''; // 위에 제시어가 입력이 되었을 때 인풋 안에 내용물을 지워준다. 
+          $input.focus();
+          const order = parseInt($order.textContent); // 현재 순서
+          if (order + 1 > number) {
+            $order.textContent = 1;
+          } else {
+            $order.textContent = order + 1;
+          }
+        } else { 
+          alert('올바르지 않은 단어입니다!');
+          $input.value = ''; // 위에 제시어가 입력이 되었을 때 인풋 안에 내용물을 지워준다. 
+          $input.focus();
+        }
+      }
+    };
+
+    $input.addEventListener('input', onInput);
+    $button.addEventListener('click', onClickButton);
+
+
+  </script>
+</body>
+
+</html>
