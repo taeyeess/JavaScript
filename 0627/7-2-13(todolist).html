@@ -33,6 +33,13 @@
 
       //추가된 목록을 식별하기 위한 키 값
       const key = keyCount;
+      keyCount += 1;
+
+      //생성된 태그를 추가
+      item.setAttribute('data-key', key);
+      item.appendChild(checkbox);
+      item.appendChild(text);
+      item.appendChild(button);
       //추가 버튼을 클릭했을 때 실행할 함수 호출
       addButton.addEventListener('click', addTodo);
     });
