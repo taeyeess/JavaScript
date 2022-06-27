@@ -23,7 +23,7 @@
           alert('할 일을 입력해주세요')
           return
         }
-      };
+      
 
       //입력된 내용에 대한 태그 생성
       const item = document.createElement('div');
@@ -40,9 +40,40 @@
       item.appendChild(checkbox);
       item.appendChild(text);
       item.appendChild(button);
+      todoList.appendChild(item);
+
+      //추가된 태그 속성을 선언
+      checkbox.type = 'checkbox';
+      checkbox.addEventListener('change',(e)=>{
+        item.style.textDecoration = e.target.checked ? 'line-through' : ''
+      });
+      text.textContent = input.value;
+      button.textContent = '제거하기';
+      button.addEventListener('click', ()=>{
+        removeTodo(key);
+      });
+
+      //입력창에 공백으로 초기화
+      input.value = '';
+
+    };
+      //삭제하는 함수 호출
+      const removeTodo = (key) => {
+        const item = document.querySelector(`[data-key="${key}"]`);
+        todoList.removeChild(item);
+      };
+      
       //추가 버튼을 클릭했을 때 실행할 함수 호출
       addButton.addEventListener('click', addTodo);
+      input.addEventListener('keyup', (e)=>{
+        const ENTER = 13
+        if(e.keyCode === ENTER){
+          addTodo();
+        }
+      });
     });
+
+    
   </script>
 </head>
 <body>
