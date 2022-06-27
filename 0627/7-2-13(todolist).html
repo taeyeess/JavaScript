@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+
+      //문서 객체 설정
+      const input = document.querySelector('#todo');
+      const todoList = document.querySelector('#todo-list');
+      const addButton = document.querySelector('#add-button');
+
+      //전역변수 키 값의 초기값
+      let keyCount = 0;
+
+      //목록 추가 할 함수 선언
+      const addTodo = () => {
+        //빈 내용의 목록 추가를 방지
+        if(input.value.trim() === ''){
+          alert('할 일을 입력해주세요')
+          return
+        }
+      };
+
+      //입력된 내용에 대한 태그 생성
+      const item = document.createElement('div');
+      const checkbox = document.createElement('input');
+      const text = document.createElement('span');
+      const button = document.createElement('button');
+
+      //추가된 목록을 식별하기 위한 키 값
+      const key = keyCount;
+      keyCount += 1;
+
+      //생성된 태그를 추가
+      item.setAttribute('data-key', key);
+      item.appendChild(checkbox);
+      item.appendChild(text);
+      item.appendChild(button);
+      //추가 버튼을 클릭했을 때 실행할 함수 호출
+      addButton.addEventListener('click', addTodo);
+    });
+  </script>
+</head>
+<body>
+  <h1>To Do List</h1>
+  <input id="todo">
+  <button id="add-button">추가하기</button>
+  <div id="todo-list"></div>
+</body>
+</html>
