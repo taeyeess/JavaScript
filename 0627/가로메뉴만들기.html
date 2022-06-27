@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    ul,li{
+      list-style: none;
+    }
+    a{
+      text-decoration: none;
+    }
+    .container{
+
+    }
+    .container > ul{}
+    .container > ul > li{
+      float: left;
+      width: 150px;
+      height: 40px;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 15px;
+      border-right: 1px solid #ccc;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .container > ul > li:last-child{
+      border-right: 0;
+    }
+    .container > ul > li > a{
+      display: block;
+      width: 100%;
+      line-height: 40px;
+      background-color: #eaeaea;
+      color:#666;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    .container > ul > li:hover > a,
+    .container > ul > li:hover > a.over{
+      font-weight: 600;
+      background: #8ac007;
+      color:#fff;
+    }
+    .container .sub{
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      display: none;
+    }
+    .container .sub li{
+      border-bottom: 1px solid #ccc;
+    }
+    .container .sub li a{
+      display: block;
+      padding:10px;
+      color:#666;
+      background-color: #fff;
+    }
+    .container .sub li a:hover,
+    .container .sub li a:focus{
+      background-color: #f8f8f8;
+    }
+  </style>
+  <script>
+    window.addEventListener('load', ()=>{
+      const menuLi = document.querySelectorAll('.container > ul > li')
+      for(let i = 0; i < menuLi.length; i++){
+        menuLi[i].addEventListener('mouseenter', (e)=>{
+          const link = e.currentTarget.children[0];
+                link.classList.add('over')
+          const sub = e.currentTarget.children[1];
+                sub.style.display = 'block';
+        })
+        menuLi[i].addEventListener('mouseleave', (e)=>{
+          const link = e.currentTarget.children[0];
+                link.classList.remove('over')
+          const sub = e.currentTarget.children[1];
+                sub.style.display = 'none';
+        })
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <ul>
+      <li><a href="">main1</a>
+        <ul class="sub">
+          <li><a href="">sub1</a></li>
+          <li><a href="">sub2</a></li>
+          <li><a href="">sub3</a></li>
+          <li><a href="">sub4</a></li>
+        </ul>  
+      </li>
+      <li><a href="">main2</a>
+        <ul class="sub">
+          <li><a href="">sub1</a></li>
+          <li><a href="">sub2</a></li>
+          <li><a href="">sub3</a></li>
+          <li><a href="">sub4</a></li>
+        </ul>  
+      </li>
+      <li><a href="">main3</a>
+        <ul class="sub">
+          <li><a href="">sub1</a></li>
+          <li><a href="">sub2</a></li>
+          <li><a href="">sub3</a></li>
+          <li><a href="">sub4</a></li>
+        </ul>  
+      </li>
+      <li><a href="">main4</a>
+        <ul class="sub">
+          <li><a href="">sub1</a></li>
+          <li><a href="">sub2</a></li>
+          <li><a href="">sub3</a></li>
+          <li><a href="">sub4</a></li>
+        </ul>  
+      </li>
+    </ul>
+  </div>
+  <ul></ul>
+</body>
+</html>
