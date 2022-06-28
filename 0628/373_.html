@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+   try {
+       alert('a 위치입니다');
+       throw "예외 강제 발생"
+       // throw문 사용자 정의 예외 발생하는 ㅔ소드
+      } catch (exception) { 
+        alert('b 위치입니다')
+      } finally{ 
+        alert('c 위치입니다')
+      }
+  </script>
+</body>
+</html>

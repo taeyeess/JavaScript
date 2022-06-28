@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+   const students = []; //배열 객체선언
+
+   //생성자 추가
+      students.push({ 이름: '구름', 국어: 87, 영어: 98, 수학: 88, 과학: 90})
+      students.push({ 이름: '별이', 국어: 92, 영어: 98, 수학: 96, 과학: 88})
+      students.push({ 이름: '겨울', 국어: 76, 영어: 96, 수학: 94, 과학: 86})
+      students.push({ 이름: '바다', 국어: 98, 영어: 52, 수학: 98, 과학: 92})
+
+      // 출력합니다. 
+      let output = `이름\t총점\t평균\n`
+      for(const s of students){
+         const sum = s.국어 + s.영어 + s.수학 + s.과학
+         const average = sum / 4
+         output += `${s.이름}\t${sum}점\t${average}점\n`
+
+         /*
+         [이스케이프 시퀀스(escape sequence)]c언어 사용
+            \a	경고(alert)
+            \n	줄바꿈(new line)
+            \t	수평 탭(horizontal tab)
+            \v	수직 탭(vertical tab)
+            \b	백스페이스(backspace)
+            \f	폼 피드(form feed)
+            \r	캐리지 리턴(carriage return)
+            \\	백슬래시( \, backslash)
+            \’	작음따옴표( ‘, single quotes)
+            \”	큰따옴표( “, double quotes)
+            \ooo	8진수 숫자를 사용하여 ASCII 코드의 문자 표현
+            \xhh	16진수 숫자를 사용하여 ASCII 코드의 문자 표현
+         */
+      }
+      console.log(output);
+  </script>
+</body>
+</html>
