@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상단메뉴(전체풀다운)</title>
+  <style>
+    *{
+      margin:0; padding: 0;
+    }
+    ul,li{
+      list-style: none;
+    }
+    a{
+      text-decoration:none;
+    }
+    #container{
+      width: 100%;
+      height: 120px;
+      background-color: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #container > ul{}
+    #container > ul > li{ float: left; 
+                          width:150px; height: 40px;
+                          text-align:center;
+                          text-transform: uppercase;
+                          font-size: 15px;
+                          border-bottom: 1px solid #ccc;
+                          box-sizing: border-box;
+                          position: relative;}
+                          #container > ul > li:last-child{border-right:0}
+    #container > ul > li > a{
+                        display: block;
+                        width: 100%;
+                        line-height:40px;
+                        background-color: #eaeaea;
+                        color: #666;
+                        transition:background 0.4s, color 0.4s;
+    }
+    #container > ul > li:hover > a,
+    #container > ul > li:hover > a.over{
+                      font-weight: 600;
+                      background: #8ac007;
+                      color: #fff;
+    }
+    
+    #subbox{
+      width: 100%;
+      height: 0px;
+      background-color: yellow;
+      position: absolute;
+      top: 90px;
+      left: 0;
+      z-index: 10;
+      transition: all 0.7s ease-in-out;
+    }
+    
+    #subbox.act{
+      height: 350px;
+    }
+  </style>
+  <script>
+    window.addEventListener('load',()=>{
+       const menuUl = document.querySelector('#container > ul'); //서브메뉴를 조절하기 위해 추출
+       const menuLi = document.querySelectorAll('#container > ul > li');
+       const subBox = document.querySelector('#subbox');
+      
+       menuUl.addEventListener('mouseenter', ()=>{
+        subBox.classList.add('act');
+       });
+
+       subBox.addEventListener('mouseleave', (e)=>{
+        e.target.classList.remove('act');
+       });
+       for(let i=0; i< menuLi.length; i++){ //i는 menuLi의 인덱스
+         menuLi[i].addEventListener('mouseenter',(e)=>{
+          
+            // 자식요소 배열로 추출방법 children[인덱스값];
+            const link = e.currentTarget.children[0];
+                  link.classList.add('over');            
+         });
+
+
+        //  menuLi[i].addEventListener('mouseenter',(e)=>{
+          
+        //   // 자식요소 배열로 추출방법 children[인덱스값];
+        //   const link = e.currentTarget.children[0];
+        //         link.classList.remove('over'); 
+        // });  //  강사님은 넣었는데 왜 없어도 똑같이 실행되는 것일까...
+        
+       }
+    })
+ </script>
+</head>
+<body>
+  <div id="container">
+    <ul>
+        <li><a href="">main1</a></li>
+        <li><a href="">main2</a></li>
+        <li><a href="">main3</a></li>
+        <li><a href="">main4</a></li>
+    </ul>
+    <div id="subbox">subbox</div>
+</div>
+</body>
+</html>
