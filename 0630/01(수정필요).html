@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    body{
+      height: 5000px;
+    }
+    .container{
+      margin: 40px;
+    }
+    .ball{
+      width: 50px;
+      height: 50px;
+      background-color: #ccc;
+      border-radius: 50%;
+    }
+  </style>
+  <script>
+    window.addEventListener('load',()=>{
+      
+      let num = 0;
+      let currentx = 0;
+      let targetx = 0;
+      let moving = false;
+
+      //문서의 객체 추출
+      //const body = document.getElementsByTagName('body')[0]
+      const body = document.body; // 유일한 태그이므로 이렇게 추출해도 됨
+      body.addEventListener('wheel', (e)=>{
+        // console.log('wheel event');
+        // console.log(e);
+        if(moving) return; //이전에 동작이 실행되는 상태라면 움직임 지시 유무
+        let delta = e.wheelDeltay // +, -  상하 이동 분류
+        if(delta > 0){
+           // up
+          if(num > 0){
+              num -= 1;
+           }
+        }else{
+          //down
+          if(num < 20){
+          num += 1;
+          }
+        }
+        moving = true; // 애니메이션 동작 시작
+        targetx = 100*num;
+        //애니메이션이 되는 함수 선언
+        const aniTimer = setInterval(function(){
+          //시작, 끝 설정
+          if(targetx > currentx){ // 방향설정
+            if(Mate.abs(targetx-currentx) > 5){//시작 -> 최종값500 > 5
+              currentx += 5
+            }else{//끝
+              currentx=targetx;
+              clearInterval(aniTimer);
+              moving = false;
+            }
+          }else{
+            if(Mate.abs(targetx-currentx) > 5){//시작
+              currentx -= 5
+            }else{//끝
+              currentxt=targetx;
+              clearInterval(aniTimer);
+              moving = false;
+            }
+          }
+                    
+          ball.style.marginLeft = currentx + 'px'
+        },5);
+      })
+    });
+
+    body.addEventListener('keydown', function(e){
+      console.log('e.keyCode' + e.keyCode);
+      if(moving) return;
+      if(e.keyCode == 38){
+        //up
+        if(num > 0){
+          num -= 1;
+        }
+      }else {
+        
+      }
+      
+      moving = true; // 애니메이션 동작 시작
+      targetx = 100*num;
+    });
+    
+    /*
+      대상.속성 = 지시값 -> 단순하게 1회 지시
+      대상.setInterval(함수(){
+        //시작 끝
+        if(움직일수 있는 조건값 제시){
+          시작
+        }else{
+          끝
+        }
+      }, 동작시간)
+    */
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="ball"></div>
+  </div>
+</body>
+</html>
