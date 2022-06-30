@@ -63,7 +63,7 @@
 
       setTimeout(function(){ //페이지가 열리는 순간 최상위 이동
         menuLi[0].classList.remove('act');
-        yoffset = window.pageTo;
+        yoffset = window.pageYOffset;
         target = 0;
         move(timer,yoffset,target);
       }, 150)
