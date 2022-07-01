@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>5.20 포스팅</title>
+    <!-- 
+        출처
+        https://velog.io/@kysung95/JS-Vanilla-JS%EB%A1%9C-draggable-slider-%EB%A7%8C%EB%93%A4%EA%B8%B0
+    -->
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        .title {
+        padding: 100px;
+        }
+        
+/*  */
+        .slider {
+        position: absolute;
+        left: 25%;
+        top: 30%;
+        width: 50%;
+        height: 400px;
+        overflow: hidden;
+        }
+
+        .slider-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 600%;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 5px;
+        pointer-events: none;
+        background-color: aliceblue;
+        }
+
+        .slider-item {
+        width: 80%;
+        height: 80%;
+        margin: 0 auto;        
+        background-color: black;
+        }
+    </style>    
+</head>
+<body>
+    <div class="title">
+        <h1>YongSeong Velog</h1>
+    </div>
+
+    <div class="slider">
+        <div class="slider-inner">
+            <div class="slider-item"></div>
+            <div class="slider-item"></div>
+            <div class="slider-item"></div>
+            <div class="slider-item"></div>
+            <div class="slider-item"></div>
+            <div class="slider-item"></div>
+        </div>
+    </div>
+    <div class="slider_bar"></div>
+    <script>
+        //index.js
+
+        let slider = document.querySelector(".slider")
+        let innerSlider = document.querySelector(".slider-inner")
+        let pressed = false
+        let startx
+        let x
+
+        slider.addEventListener("mousedown", e => {
+        pressed = true
+        startx = e.offsetX - innerSlider.offsetLeft
+        slider.style.cursor = "grabbing"
+        })
+
+        slider.addEventListener("mouseenter", () => {
+        slider.style.cursor = "grab"
+        })
+
+        slider.addEventListener("mouseup", () => {
+        slider.style.cursor = "grab"
+        })
+
+        window.addEventListener("mouseup", () => {
+        pressed = false
+        })
+
+        slider.addEventListener("mousemove", e => {
+        if (!pressed) return
+        e.preventDefault()
+        x = e.offsetX
+
+        innerSlider.style.left = `${x - startx}px`
+        checkboundary()
+        })
+
+        function checkboundary() {
+        let outer = slider.getBoundingClientRect()
+        let inner = innerSlider.getBoundingClientRect()
+
+        if (parseInt(innerSlider.style.left) > 0) {
+            innerSlider.style.left = "0px"
+        } else if (inner.right < outer.right) {
+            innerSlider.style.left = `-${inner.width - outer.width}px`
+        }
+        }
+    </script>
+</body>
+<!-- <script src="./index.js"></script> -->
+
+</html>
