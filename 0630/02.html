@@ -79,6 +79,30 @@
           pageLi[i].style.height = h + 'px';
         }
       }
+
+      // 스크롤에 의한 버튼에 스타일 적용
+      document.addEventListener('scroll', ()=>{
+        const timer = setInterval(function(){
+          yoffset = window.pageYOffset; // 현재 창에서 세로 위치값
+          console.log(yoffset);
+          // 현재 세로 좌표값(yoffset)을 해당 section 인덱스값을 추출하는 조건문
+          if(yoffset < pageLi[1].offsetTop){
+            n = 0; // index페이지영역에 현재 n값이 0. index페이지영역에 현재 세로 좌표가 있다.
+          }else if(yoffset < pageLi[2].offsetTop){
+            n = 1; 
+          }else if(yoffset < pageLi[3].offsetTop){
+            n = 2;
+          }else if(yoffset < pageLi[4].offsetTop){
+            n = 3;
+          }else if(yoffset < pageLi[5].offsetTop){
+            n = 4;
+          }else{
+            n = 5;
+          }
+          console.log(`n인덱스: + ${n}`);
+        },10)
+      });
+
       // 버튼을 클릭했을 때 이동하는 함수
       for(let j = 0; j < menuLi.length; j++){
         menuLi[j].index = j;
