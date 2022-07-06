@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;      
+    }
+    .container{
+      margin-top: 50px;
+      width: 900px;
+      height: 506px;
+      position: relative;
+    }
+    button{
+      padding: 5px 15px;
+      background-color: #666;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.5s;      
+    }
+    button:hover{background-color: #888;}
+    #my_video{
+      display: block;
+      margin-top:20px;
+      width: 900px;
+      height: auto;
+    }
+  </style>
+  <script>
+    window.addEventListener('load', ()=>{
+      const container = document.getElementsByClassName('container')[0];
+      const video = document.getElementById('my_video');      
+      const videoList = ['../video/seoul.mp4', '../video/forest.mp4', '../video/sunset.mp4'];
+      const total = videoList.length - 1; // 0부터 갯수를 카운팅하기 때문에 -1해준다
+      const buttonList = [];
+      let flag;
+
+      // button을 buttonList배열에 저장
+      for(let item of container.children){
+        if(item.tagName == 'BUTTON'){
+          buttonList.push(item);
+        }
+      }
+      //console.log(buttonList);
+
+      //각각 버튼에 클릭이벤트를 적용
+      for(let i = 0; i < buttonList.length; i++){
+        buttonList[i].index = i;
+        buttonList[i].addEventListener('click', (e)=>{
+          const index = e.target.index;
+          // 버튼의 인덱스값에 해당되는 비디오를 실행하는 함수 호출
+          playVideo(index,videoList[index]); 
+        })
+      }
+      function playVideo(n,src){
+        console.log(n + ':' + src);
+        console.log(flag);
+        if(flag !== n){ //인덱스값이 저장된 flag와 버튼인덱스(n)이 불일치되어야 실행
+          flag = n;
+          video.setAttribute('src', src);
+          video.currentTime = 0;
+          video.play();
+        }
+      }
+      video.addEventListener('ended', ()=>{
+        flag = null;
+      }); 
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <button id="video1" class="button">video1</button>
+    <button id="video2" class="button">video2</button>
+    <button id="video3" class="button">video3</button>
+    <!-- <a href="A" class="control">control</a> -->
+    <video id="my_video" class="media" src="../video/seoul.mp4">     
+    </video>
+  </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;      
+    }
+    .container{
+      margin-top: 50px;}
+    button{
+      padding: 5px 15px;
+      background-color: #666;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.5s;      
+    }
+    button:hover{background-color: #888;}
+    #my_video{
+      display: block;
+      margin-top:20px;
+      width: 900px;
+      height: auto;
+    }
+  </style>
+  <script>
+    window.addEventListener('load', ()=>{
+      const video = document.getElementById('my_video');
+      const playBtn = document.getElementById('play');
+      
+
+      //video.play();
+      playBtn.addEventListener('click',(e)=>{
+        
+        // 상태값 저장하는 변수 설정
+        if(e.target.textContent == 'play'){ //버튼안에 있는 글자를 조건으로 설정
+          e.target.textContent = 'pause'; //e는 버튼이고 글자 pause를 적용 
+          video.play();
+        }else{
+          e.target.textContent = 'play'; //e는 버튼이고 글자 plya를 적용 
+          video.pause();
+        }        
+      });
+     
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <button id="play" class="button">play</button>    
+    <video id="my_video" class="media" src="../video/seoul.mp4"></video>
+  </div>
+</body>
+</html>
