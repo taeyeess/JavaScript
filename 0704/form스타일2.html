@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    ul,li{
+      list-style: none;
+    }
+    body{
+      padding-left: 50px;
+    }
+    .container{
+      margin-top: 40px;
+    }
+    .check input{
+      margin-left: 20px;
+      margin-top: 40px;
+      vertical-align: middle;
+    }
+    .check input#check1{
+      margin-top: 0;
+    }
+
+    .check_box1{
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+      background: url(../images/spr_form.png)no-repeat 0 0;
+    }
+    .check_box1.checked{
+      background-position: -36px 0;
+    }
+    .check_box2{
+      display: inline-block;
+      margin-top: 50px;
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+      background: url(../images/spr_form.png)no-repeat -80px 0;
+    }
+    .check_box2.checked{
+      background-position: -107px 0;
+    }
+
+    .check_box3{
+      display: inline-block;
+      margin-top: 50px;
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+      background: url(../images/spr_form.png)no-repeat 0 -30px;
+    }
+    .check_box3.checked{
+      background-position: -36px -30px;
+    }
+
+    .check_box4{
+      display: inline-block;
+      margin-top: 50px;
+      width: 56px;
+      height: 33px;
+      vertical-align: middle;
+      background: url(../images/spr_form.png)no-repeat 0 -66px;
+    }
+    .check_box4.checked{
+      background-position: -72px -66px;
+    }
+  </style>
+  <script>
+    window.addEventListener('load', ()=>{
+      //객체 추출
+     const container = document.getElementsByClassName('container')[0];
+     /*
+      for(var i = 0; i <container.children.length; i++){
+      if(container.children[i].tagName == "FORM"){
+        const formArea = container.children[i]; //form
+      }
+     }
+     */
+     const formArea = container.children[0];
+     console.log(formArea);
+
+     for(let i = 0; i < formArea.children.length; i++){
+      if(formArea.children[i].className == 'check'){
+        const checkbox = formArea.children[i].children[0];
+        console.log(checkbox);
+        checkbox.addEventListener('click', (e)=>{
+          e.preventDefault();
+          if(e.target.classList.contains('checked')=='false'){
+            e.target.classList.add('checked');
+            e.target.nextElementSibling.setAttribute('checked', 'true');
+          }else{
+            e.target.classList.remove('checked');
+            e.target.nextElementSibling.removeAttribute('checked');
+          }
+        });
+      }
+     }
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <form action="" method="">
+      <div class="check">
+        <a href="" class="check_box1" title="check box1"></a>
+        <input type="checkbox" id="check1">
+      </div>
+      <div class="check">
+        <a href="" class="check_box2" title="check box2"></a>
+        <input type="checkbox" id="check2">
+      </div>
+      <div class="check">
+        <a href="" class="check_box3" title="check box3"></a>
+        <input type="radio" id="check3">
+      </div>
+      <div class="check">
+        <a href="" class="check_box4" title="check box4"></a>
+        <input type="radio" id="check4">
+      </div>
+    </form>
+  </div>
+</body>
+</html>
