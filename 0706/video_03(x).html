@@ -43,7 +43,7 @@
     window.addEventListener('load', ()=>{
       const video = document.getElementById('my_video');
       const container = document.getElementsByClassName('container')[0];
-      const playbtn = document.querySelector('.control');
+      //const playbtn = document.querySelector('.control');
 
       let btn;
 
@@ -94,7 +94,7 @@
       video.addEventListener('ended', ()=>{ //ended는 영상플레이가 끝나거나 또는 스트리밍이 안될때 발생하는 이벤트
         clickFlag = false;
         
-        //btn.style.display = 'block';
+        btn.style.display = 'block';
         //btn.style.opacity = '0';
         const timer = setInterval(function(){
           if(btnOpacity < 0.8){           
@@ -103,10 +103,12 @@
             btnOpacity = 0.8;
             clearInterval(timer);
           }
+          btn.style.opacity = btnOpacity;
+          console.log(btn.style.opacity)
         },50);
-        btn.style.opacity = btnOpacity;        
+               
         video.pause();
-        playbtn.style.opacity = 1;
+        //playbtn.style.opacity = 1;
         video.currentTime = 0; //현재 재생 시간을 초 단위 지정
       });
     });
