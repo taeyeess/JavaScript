@@ -46,17 +46,20 @@ html {
   }
   
   .item {
-    width: 200px;
+    width: 800px;
     height: calc(100% - 40px);
+    margin-right: 50px;
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    align-items:center;
+    justify-content:center;
     font-size: 80px;
     font-weight: 100;
     color: rgba(0,0,0,0.15);
     box-shadow: inset 0 0 0 10px rgba(0,0,0,0.15);
   }
-  
+  .item >  img {
+    width: 400px;
+  }
   .item:nth-child(9n+1) { background: dodgerblue;}
   .item:nth-child(9n+2) { background: goldenrod;}
   .item:nth-child(9n+3) { background: paleturquoise;}
